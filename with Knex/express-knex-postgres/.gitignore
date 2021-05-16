@@ -1,0 +1,15 @@
+#intellij
+.idea
+
+# VS Code
+.vscode
+
+#node
+node_modules
+
+#sqlite
+*.sqlite3
+
+#app
+dist
+.env
