@@ -2,6 +2,8 @@
 
 ### Knex, TypeORM, Sequelize, and Prisma
 
+- https://www.youtube.com/watch?v=riTpEByIPAI&list=PLIGDNOJWiL18aYxcuxbDheTFs4v2rosBf
+
 ![](/snap/diag.png)
 
 
