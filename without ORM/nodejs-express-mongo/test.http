@@ -1,0 +1,15 @@
+POST http://localhost:3000/item
+Content-Type: application/json
+
+{
+        "name": "tks",
+        "quantity": 10
+}
+
+###
+
+GET http://localhost:3000/items
+
+###
+
+PUT  http://localhost:3000/item/60b8806e97fc0d34477b2aba/quantity/10

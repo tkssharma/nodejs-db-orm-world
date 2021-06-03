@@ -1,0 +1,15 @@
+POST http://localhost:3001/users
+Content-Type: application/json
+
+{
+        "name": "tks",
+        "email": "tks@gmail.com"
+}
+
+###
+
+GET http://localhost:3001/users
+
+###
+
+GET  http://localhost:3001/users/1
