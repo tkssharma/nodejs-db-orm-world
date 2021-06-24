@@ -1,0 +1,33 @@
+{
+  "name": "express-knex",
+  "version": "1.0.0",
+  "scripts": {
+    "start:prod": "node_modules/.bin/knex migrate:latest && node server.js",
+    "server": "cd server && nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "test": "cd server && jest",
+    "test:watch": "cd server && jest --watch",
+    "start": "cd server && node server.js",
+    "db:rollback": "dotenv -- node_modules/.bin/knex migrate:rollback",
+    "db:migrate:make": "dotenv -- node_modules/.bin/knex migrate:make",
+    "db:migrate:run": "dotenv -- node_modules/.bin/knex migrate:latest",
+    "db:seed:make": "dotenv -- node_modules/.bin/knex seed:make",
+    "db:seed:run": "dotenv -- node_modules/.bin/knex seed:run"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.4",
+    "jest": "^24.9.0",
+    "knex": "^0.20.5",
+    "lodash": "^4.17.15",
+    "pg": "^7.14.0",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1",
+    "dotenv": "8.2.0",
+    "dotenv-cli": "4.0.0",
+    "nodemon": "^2.0.2"
+  }
+}

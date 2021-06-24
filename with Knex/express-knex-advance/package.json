@@ -1,0 +1,39 @@
+{
+  "name": "express-knex-postgres-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate code for quick setup for CRUD applications using express/knex/postgres",
+  "main": "index.js",
+  "scripts": {
+    "test": "DB_ENV=testing jest --watch --verbose",
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raberin/express-knex-postgres-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raberin/express-knex-postgres-boilerplate/issues"
+  },
+  "homepage": "https://github.com/raberin/express-knex-postgres-boilerplate#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.20.4",
+    "morgan": "^1.9.1",
+    "pg": "^7.15.2"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  }
+}
