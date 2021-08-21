@@ -1,0 +1,28 @@
+{
+  "name": "node-api-knex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "migrate": "knex migrate:latest",
+    "unmigrate": "knex migrate:rollback"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Easybuoy/node-api-knex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Easybuoy/node-api-knex/issues"
+  },
+  "homepage": "https://github.com/Easybuoy/node-api-knex#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.19.1",
+    "pg": "^7.12.0"
+  }
+}
