@@ -1,0 +1,38 @@
+version: "3"
+services:
+  mongo:
+    container_name: orm-mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/configdb
+      - mongo_data:/data/mysql
+    ports:
+      - 27017:27017
+  postgres:
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_MULTIPLE_DATABASES="test"
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - api_data:/data/postgres
+    ports:
+      - 5434:5432 
+  mysql:
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    volumes:
+      - mysql_data:/var/lib/mysql      
+volumes:
+  api_data: {} 
+  mongo_data:
+    name: global_mongo
+  mysql_data: {}

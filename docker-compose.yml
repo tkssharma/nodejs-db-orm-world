@@ -3,7 +3,3 @@ services:
   postgres:
     image: postgres
     restart: unless-stopped
-  mongo:
-    image: mongo
-  mysql:
-    image: mysql:5.6
