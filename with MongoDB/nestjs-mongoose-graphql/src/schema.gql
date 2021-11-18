@@ -1,0 +1,175 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  username: String!
+  email: String!
+  bio: String
+  image: String
+  isActive: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type JWTTokenResponseType {
+  token: String
+  success: Boolean!
+}
+
+type Comment {
+  id: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  body: String!
+  author: User!
+}
+
+type Article {
+  id: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  favoritesCount: Int!
+  slug: String!
+  title: String!
+  description: String!
+  body: String!
+  tags: [String!]!
+  author: User!
+  favorited: Boolean!
+  comments: [Comment!]!
+}
+
+type PaginatedArticle {
+  totalCount: Float!
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+  page: Float!
+  totalPages: Float!
+  nextPage: Float!
+  prevPage: Float!
+  results: [Article!]!
+}
+
+type Success {
+  success: Boolean!
+}
+
+type Query {
+  """returns current logged in user"""
+  currentUser: User!
+
+  """get all articles"""
+  allArticles(pageInfo: PaginationArgs): PaginatedArticle!
+
+  """get article by filter"""
+  getArticle(filter: ArticleFilterInput!): Article!
+}
+
+input PaginationArgs {
+  page: Int
+  pageSize: Int
+}
+
+input ArticleFilterInput {
+  id: String
+  slug: String
+}
+
+type Mutation {
+  """create a new user"""
+  createUser(input: CreateUserInput!): User!
+
+  """update an existing user"""
+  updateUser(input: UpdateUserInput!): User!
+
+  """login using email/password to obtain a JWT token"""
+  login(input: LoginInputType!): JWTTokenResponseType!
+
+  """create a new article"""
+  createArticle(input: CreateArticleInput!): Article!
+
+  """update an existing article"""
+  updateArticle(input: UpdateArticleInput!): Article!
+
+  """delete an existing article"""
+  deleteArticle(input: ArticleIdInput!): Success!
+
+  """favorite an article"""
+  favoriteArticle(input: ArticleIdInput!): Success!
+
+  """unFavorite an article"""
+  unFavoriteArticle(input: ArticleIdInput!): Success!
+
+  """add a comment to existing article"""
+  addComment(input: CreateCommentInput!): Comment!
+
+  """delete a comment """
+  deleteComment(input: DeleteCommentInput!): Comment!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  bio: String
+  image: Upload
+  confirmPassword: String!
+  password: String!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input UpdateUserInput {
+  username: String
+  email: String
+  bio: String
+  image: Upload
+}
+
+input LoginInputType {
+  email: String!
+  password: String!
+}
+
+input CreateArticleInput {
+  slug: String!
+  title: String!
+  description: String!
+  body: String!
+  tags: [String!]!
+}
+
+input UpdateArticleInput {
+  slug: String
+  title: String
+  description: String
+  body: String
+  tags: [String!]
+  id: ID!
+}
+
+input ArticleIdInput {
+  articleId: String!
+}
+
+input CreateCommentInput {
+  articleId: String!
+  body: String!
+}
+
+input DeleteCommentInput {
+  commentId: String!
+  articleId: String!
+}
+
+type Subscription {
+  articleAdded: Article!
+  commentAdded: Comment!
+}

@@ -1,0 +1,30 @@
+diff --git a/node_modules/@types/mongoose-paginate-v2/index.d.ts b/node_modules/@types/mongoose-paginate-v2/index.d.ts
+index 53433d2..1f0fda9 100644
+--- a/node_modules/@types/mongoose-paginate-v2/index.d.ts
++++ b/node_modules/@types/mongoose-paginate-v2/index.d.ts
+@@ -10,6 +10,7 @@
+ // Minimum TypeScript Version: 3.2
+ //
+ // Based on type declarations for mongoose-paginate 5.0.0.
++import mongodb = require("mongodb");
+ 
+ declare module 'mongoose' {
+     interface CustomLabels {
+@@ -31,7 +32,7 @@ declare module 'mongoose' {
+         select?: object | string;
+         sort?: object | string;
+         customLabels?: CustomLabels;
+-        collation?: CollationOptions;
++        collation?: mongodb.CollationDocument;
+         populate?: object[] | string[] | object | string | QueryPopulateOptions;
+         lean?: boolean;
+         leanWithId?: boolean;
+@@ -42,7 +43,7 @@ declare module 'mongoose' {
+         /* If pagination is set to `false`, it will return all docs without adding limit condition. (Default: `true`) */
+         pagination?: boolean;
+         projection?: any;
+-        options?: QueryFindOptions;
++        options?: QueryOptions;
+     }
+ 
+     interface QueryPopulateOptions {
