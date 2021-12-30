@@ -1,12 +1,12 @@
-import express from 'express';
 import { PrismaClient } from "@prisma/client";
+import express from 'express';
 
 const prisma = new PrismaClient()
 const app = express();
 
 
 app.get('/', async (req, res) => {
-  const { start, stop, first_name } = req.query;
+  const { start, stop, first_name }: any = req.query;
   try {
     /*
       prisma has alrady been connected to a database with car_owners table
@@ -14,7 +14,7 @@ app.get('/', async (req, res) => {
     */
     const cars = await prisma.car_owners.findMany({
       orderBy: { first_name: 'asc' },
-      first: +start, last: +stop,
+      first: Number(start) as never, last: +stop as never,
       where: {
         first_name: first_name.toString()
       }
