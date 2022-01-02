@@ -20,3 +20,19 @@ model car_owners {
   job_title      String?
   last_name      String?
 }
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  jobTitle String
+  email String
+  password String
+  posts Post[]
+}
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  published Boolean @default(true)
+  authorId  Int
+  author    User    @relation(fields: [authorId], references: [id])
+}

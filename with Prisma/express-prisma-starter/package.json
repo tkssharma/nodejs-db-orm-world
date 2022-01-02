@@ -8,7 +8,14 @@
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/server.js",
     "status": "prisma migrate status",
-    "create": "prisma migrate dev"
+    "migrate": "prisma migrate dev --name",
+    "prisma:migrate": "prisma migrate dev --skip-seed",
+    "prisma:format": "prisma format",
+    "prisma:generate": "prisma generate",
+    "prisma:generate:watch": "prisma generate --watch",
+    "prisma:seed": "prisma db seed --preview-feature",
+    "prisma:studio": "prisma studio",
+    "prisma:reset": "prisma migrate reset"
   },
   "keywords": [
     "express",
