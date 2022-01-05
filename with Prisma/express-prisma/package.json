@@ -1,0 +1,30 @@
+{
+  "name": "express-prisma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "rm -rf ./dist && tsc",
+    "start": "npm run build && node dist/server.js",
+    "status": "prisma migrate status",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "prisma migrate dev --name",
+    "prisma:migrate": "prisma migrate dev --skip-seed",
+    "prisma:format": "prisma format",
+    "prisma:generate": "prisma generate"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^3.7.0",
+    "express": "^4.17.2",
+    "prisma": "^3.7.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.8",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}
