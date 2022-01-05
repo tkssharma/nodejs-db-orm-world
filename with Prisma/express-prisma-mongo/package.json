@@ -13,7 +13,6 @@
     "prisma",
     "typescript"
   ],
-  "author": "Mainak",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.6.0",

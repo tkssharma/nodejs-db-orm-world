@@ -13,14 +13,6 @@ CREATE TABLE "Article" (
 );
 
 -- CreateTable
-CREATE TABLE "ArticleTags" (
-    "articleId" INTEGER NOT NULL,
-    "tagId" INTEGER NOT NULL,
-
-    PRIMARY KEY ("articleId","tagId")
-);
-
--- CreateTable
 CREATE TABLE "Comment" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -46,10 +38,16 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "image" TEXT DEFAULT E'https://realworld-temp-api.herokuapp.com/images/smiley-cyrus.jpeg',
+    "image" TEXT DEFAULT E'https://api.realworld.io/images/smiley-cyrus.jpeg',
     "bio" TEXT,
 
     PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "_ArticleToTag" (
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL
 );
 
 -- CreateTable
@@ -68,10 +66,19 @@ CREATE TABLE "_UserFollows" (
 CREATE UNIQUE INDEX "Article.slug_unique" ON "Article"("slug");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Tag.name_unique" ON "Tag"("name");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_ArticleToTag_AB_unique" ON "_ArticleToTag"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_ArticleToTag_B_index" ON "_ArticleToTag"("B");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_UserFavorites_AB_unique" ON "_UserFavorites"("A", "B");
@@ -89,16 +96,16 @@ CREATE INDEX "_UserFollows_B_index" ON "_UserFollows"("B");
 ALTER TABLE "Article" ADD FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ArticleTags" ADD FOREIGN KEY ("articleId") REFERENCES "Article"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "ArticleTags" ADD FOREIGN KEY ("tagId") REFERENCES "Tag"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "Comment" ADD FOREIGN KEY ("articleId") REFERENCES "Article"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ArticleToTag" ADD FOREIGN KEY ("A") REFERENCES "Article"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ArticleToTag" ADD FOREIGN KEY ("B") REFERENCES "Tag"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_UserFavorites" ADD FOREIGN KEY ("A") REFERENCES "Article"("id") ON DELETE CASCADE ON UPDATE CASCADE;

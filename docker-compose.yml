@@ -3,3 +3,5 @@ services:
   postgres:
     image: postgres
     restart: unless-stopped
+  mongo:
+    image: mongo    
