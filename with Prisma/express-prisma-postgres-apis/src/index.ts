@@ -1,7 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
-import bodyParser from 'body-parser';
 import routes from './routes/routes';
 import HttpException from './models/http-exception.model';
 import swaggerDocument from '../docs/swagger.json';
@@ -13,8 +12,7 @@ const app = express();
  */
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(routes);
 
 // Serves images

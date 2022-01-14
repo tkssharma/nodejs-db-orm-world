@@ -4,26 +4,27 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
-model car_owners {
-  id    Int    @id @default(autoincrement())
-  bio            String?
-  car_color      String?
-  car_model      String?
-  car_model_year String?
-  country        String?
-  email          String?
-  first_name     String?
-  gender         String?
+enum Role {
+  USER
+  ADMIN
 }
 
-model users {
-  id    Int    @id @default(autoincrement())
-  name            String?
-  firstname       String?
-  email           String?
-  lastname        String?
-  address         String?
+model Author {
+  id            String        @id @default(uuid())
+  email         String        @unique(map: "author.unique_emails")
+  name          String
+  Quotes        Quote []
+  @@map("author")
+}
+
+model Quote {
+  account_id String   @id @default(uuid())
+  author_id String
+  author Author @relation(fields: [author_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  @@map("quotes")
 }
