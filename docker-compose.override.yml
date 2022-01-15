@@ -1,5 +1,5 @@
 version: "3"
-services:
+services: 
   postgres:
     environment:
       - POSTGRES_USER=test
