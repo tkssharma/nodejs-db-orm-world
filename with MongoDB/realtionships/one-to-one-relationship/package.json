@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-mongoose-one-to-one-example",
+  "version": "1.0.0",
+  "description": "Nodejs Mongodb one-to-one relationship example with Mongoose",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "mongodb",
+    "mongoose",
+    "one-to-one"
+  ],
+  "author": "bezkoder",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.7.4"
+  }
+}

@@ -1,0 +1,18 @@
+In this playlist we are covering all about Mongoose with Node JS 
+and for api development we are using express and nestjs 
+
+https://github.com/tkssharma/nodejs-db-orm-world/tree/master/with%20MongoDB
+https://www.youtube.com/playlist?list=PLIGDNOJWiL1_yCqtAm5i1CDU6wxmcU2_G
+https://www.youtube.com/playlist?list=PLIGDNOJWiL18aYxcuxbDheTFs4v2rosBf
+
+- Mongoose Architecture
+- Express app with Mongoose
+- Express app with Mongoose and relationships
+- Express app with Mongoose and one to one relationship
+- Express app with Mongoose and one to many relationship
+- Express app with Mongoose and many to many relationship
+- Manage relationships in Mongo Models using mongoose ODM
+- Nest JS app with Mongoose and real worlds Apps
+- Building APIs using Mongoose and Express/Nest JS App
+
+- Food Order App in Express 

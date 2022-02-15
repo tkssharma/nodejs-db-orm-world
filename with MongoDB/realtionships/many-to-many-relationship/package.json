@@ -1,0 +1,23 @@
+{
+  "name": "node-js-mongoose-many-to-many",
+  "version": "1.0.0",
+  "description": "Mongoose many to many relationship example",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongoose",
+    "node",
+    "js",
+    "many",
+    "to",
+    "many",
+    "mongodb"
+  ],
+  "author": "bezkoder",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.8.11"
+  }
+}
