@@ -14,7 +14,7 @@ import { Company, CompanySchema } from './model/company';
     MongooseModule
     .forFeature(
       [
-        { name: 'company', schema: CompanySchema }
+        { name: 'company', schema: CompanySchema },
       ]),
   ],
   providers: [CompanyService],

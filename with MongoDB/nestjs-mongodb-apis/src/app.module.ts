@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import PostsModule from './posts/posts.module';
 import * as Joi from '@hapi/joi';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Module } from '@nestjs/common';
+import PostsModule from './posts/posts.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import CategoriesModule from './categories/categories.module';
 import SeriesModule from './series/series.module';
@@ -11,26 +11,22 @@ import SeriesModule from './series/series.module';
   imports: [
     ConfigModule.forRoot({
       validationSchema: Joi.object({
-        MONGO_USERNAME: Joi.string().required(),
-        MONGO_PASSWORD: Joi.string().required(),
-        MONGO_DATABASE: Joi.string().required(),
-        MONGO_HOST: Joi.string().required(),
-      }),
+        PORT: Joi.number().required(),
+        ENV: Joi.string().required(),
+        MONGO_URI: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRATION_TIME: Joi.string().required()
+      })
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => {
-        const username = configService.get('MONGO_USERNAME');
-        const password = configService.get('MONGO_PASSWORD');
-        const database = configService.get('MONGO_DATABASE');
-        const host = configService.get('MONGO_HOST');
-
-        return {
-          uri: `mongodb://${username}:${password}@${host}`,
-          dbName: database,
-        };
-      },
       inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => {
+        const uri = configService.get('MONGO_URI');
+        return {
+          uri
+        }
+      },
     }),
     PostsModule,
     AuthenticationModule,
@@ -40,4 +36,5 @@ import SeriesModule from './series/series.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+
+export class AppModule { }

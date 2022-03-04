@@ -19,7 +19,7 @@ import MongooseClassSerializerInterceptor from '../utils/mongooseClassSerializer
 @Controller('authentication')
 @UseInterceptors(MongooseClassSerializerInterceptor(User))
 export class AuthenticationController {
-  constructor(private readonly authenticationService: AuthenticationService) {}
+  constructor(private readonly authenticationService: AuthenticationService) { }
 
   @Post('register')
   async register(@Body() registrationData: RegisterDto) {
@@ -31,9 +31,8 @@ export class AuthenticationController {
   @Post('log-in')
   async logIn(@Req() request: RequestWithUser) {
     const { user } = request;
-    const cookie = this.authenticationService.getCookieWithJwtToken(user._id);
-    request.res?.setHeader('Set-Cookie', cookie);
-    return user;
+    const token = this.authenticationService.getCookieWithJwtToken(user._id);
+    return { token };
   }
 
   @UseGuards(JwtAuthenticationGuard)
